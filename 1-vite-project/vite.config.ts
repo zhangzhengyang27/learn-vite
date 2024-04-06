@@ -1,6 +1,7 @@
 import { defineConfig, normalizePath } from "vite"
 import react from "@vitejs/plugin-react"
 import autoprefixer from "autoprefixer"
+import windi from "vite-plugin-windicss"
 
 // 如果类型报错，需要安装 @types/node: pnpm i @types/node -D
 import path from "path"
@@ -12,7 +13,7 @@ const variablePath = normalizePath(path.resolve("./src/styles/variables.scss"))
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), windi()],
   // css 相关的配置
   css: {
     preprocessorOptions: {
