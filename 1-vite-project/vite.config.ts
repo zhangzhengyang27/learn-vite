@@ -37,4 +37,7 @@ export default defineConfig({
       ]
     }
   }
+  // json: {
+  //   stringify: true
+  // }
 });
