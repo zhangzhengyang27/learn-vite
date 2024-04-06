@@ -12,6 +12,7 @@ export default function Header() {
           使用 windi 处理样式 vite version: {devDependencies.vite}
         </h1>
       </div>
+      <p className="bg-red-400">使用 Tailwind 处理样式</p>
     </>
   )
 }
