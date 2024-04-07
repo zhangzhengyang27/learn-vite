@@ -7,13 +7,17 @@ import svgr from 'vite-plugin-svgr';
 // 如果类型报错，需要安装 @types/node: pnpm i @types/node -D
 import path from 'path';
 
-// 全局 scss 文件的路径
-// 用 normalizePath 解决 window 下的路径问题
-
+// 全局 scss 文件的路径,用 normalizePath 解决 window 下的路径问题
 const variablePath = normalizePath(path.resolve('./src/styles/variables.scss'));
+
+// 是否为生产环境，在生产环境一般会注入 NODE_ENV 这个环境变量，见下面的环境变量文件配置
+const isProduction = process.env.NODE_ENV === 'production';
+console.log(isProduction);
+const CDN_URL = '/xxxxxx'; // 填入项目的 CDN 域名地址
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: isProduction ? CDN_URL : '/',
   plugins: [react(), windi(), svgr()],
   resolve: {
     alias: {
@@ -36,6 +40,12 @@ export default defineConfig({
         })
       ]
     }
+  },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+  },
+  build: {
+    assetsInlineLimit: 8 * 1024
   }
   // json: {
   //   stringify: true

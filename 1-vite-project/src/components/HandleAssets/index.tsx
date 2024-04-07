@@ -15,6 +15,8 @@ export default function HandleAssets() {
       <img className="m-auto mb-4" src={logoSrc} alt="" />
       <img id="logo" className="m-auto mb-4" alt="" />
       <ReactLogo />
+      {import.meta.env.VITE_IMG_BASE_URL}
+      <img src={new URL('/images/202403201450086.png', import.meta.env.VITE_IMG_BASE_URL).href} />
     </div>
   );
 }
